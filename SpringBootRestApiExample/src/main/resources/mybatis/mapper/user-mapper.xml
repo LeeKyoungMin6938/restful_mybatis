@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.websystique.service.UserMapper">
+	
+	<resultMap type="User" id="userResultMap">
+		<result property="id" column="ID" />
+		<result property="name" column="NAME" />
+		<result property="age" column="AGE" />
+		<result property="salary" column="SALARY" />
+	</resultMap>
+	
+	<select id="findAllUsers" resultMap="userResultMap">
+		select * from User order by id asc
+	</select>
+	
+	<select id="selectById" parameterType="long" resultMap="userResultMap">
+		select * from User where id = #{id}
+	</select>
+	
+	<insert id="insert">
+		insert into User(id, name, age, salary) 
+		values(#{name}, #{age}, #{salary})
+	</insert>
+	
+	<update id="update">
+		update user set name = #{name}, age = #{age}, salary = #{salary} where id = #{id}
+	</update>
+	
+	<delete id="deleteById">
+		delete from user where id = #{id}
+	</delete>
+	
+	<delete id="delete">
+		delete from user
+	</delete>
+</mapper>
